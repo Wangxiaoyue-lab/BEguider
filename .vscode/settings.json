@@ -1,0 +1,17 @@
+{
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "remoteX11.SSH.privateKey": "C:\\Users\\罗力恒\\.ssh\\id_rsa",
+  "remoteX11.SSH.verboseLogging": true,
+  "remoteX11.SSH.XAuthPermissionLevel": "trusted",
+  "workbench.iconTheme": "emoji-file-icons",
+  "workbench.preferredDarkColorTheme": "One Dark Pro Darker",
+  "workbench.preferredHighContrastColorTheme": "One Dark Pro Darker",
+  "workbench.preferredHighContrastLightColorTheme": "One Dark Pro Darker",
+  "workbench.preferredLightColorTheme": "One Dark Pro Darker",
+  "workbench.productIconTheme": "emoji-product-icons",
+  "oneDarkPro.editorTheme": "One Dark Pro Darker",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
+}
