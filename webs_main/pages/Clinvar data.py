@@ -5,7 +5,7 @@ st.set_page_config(page_title="Clinvar data", layout="wide")
 st.markdown("## Clinvar data")
 st.sidebar.header("Clinvar data")
 
-# 添加提示信息
+# Add prompt
 st.markdown(
     """
     ##### _Note: All sites were set at the sixth position of the sgrna._
@@ -25,48 +25,55 @@ type2 = col2.selectbox("Proposes", ["REF", "ALT"])
 
 # Add explanatory text
 
-# 根据选择的类型确定要读取的文件名
+# Determine the file name to read based on the selected type
 filename = f"{type1[0].lower()}_{type2.lower()}_anno.csv"
 filepath = f"../datas/{filename}"
 
-# Create download button
+
+# csv
+@st.cache_data
+def load_data(filepath):
+    df = pd.read_csv(filepath)
+    return df
+
+
+@st.cache_data
+def convert_df(df):
+    return df.to_csv().encode("utf-8")
+
+
+df = load_data(filepath)
+col_names = df.columns[-9:]
+result = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
+df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
+
 st.download_button(
     label="Download all the data for local query",
-    data=filepath,
+    data=convert_df(df),
     file_name=filename,
     mime="text/csv",
 )
-
+st.markdown(
+    "#####  \* Download all the data for more **sequence information**, including 20nt-sgRNAs and 4nt-PAMs."
+)
+df = df.drop(
+    [
+        "index",
+        "lib",
+        "base",
+        "ref_position",
+        "significance",
+        "20nt_sgRNA",
+        "4nt_PAM",
+    ],
+    axis=1,
+)
 
 st.markdown(
     """
     ## Online query
     """
 )
-
-
-# 读取csv文件
-@st.cache_data
-def load_data(filepath):
-    df = pd.read_csv(filepath)
-    return df.drop(
-        [
-            "index",
-            "lib",
-            "base",
-            "ref_position",
-            "significance",
-            "20nt_sgRNA",
-            "4nt_PAM",
-        ],
-        axis=1,
-    )
-
-
-df = load_data(filepath)
-col_names = df.columns[-9:]
-result = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
-df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # 调换顺序
 
 
 def highlight_greater_than_threshold(val, threshold):
@@ -122,7 +129,7 @@ if cols[0].button("Update"):
         st.dataframe(filtered_df.style.highlight_max(subset=result, axis=0))
         cols[1].download_button(
             label="Download",
-            data=filtered_df.to_csv(index=False),
+            data=convert_df(filtered_df),
             file_name="filtered_data.csv",
             mime="text/csv",
         )
@@ -130,7 +137,6 @@ if cols[0].button("Update"):
 st.markdown(
     """
     #####  \* Click the **Update** button to check the results based on the base editors and your proposes. Sites that performed best on each prediction were highlighted.
-    #####  \* Download the data for more **sequence information**, including 20nt-sgRNAs and 4nt-PAMs.
     - Some concepts:
         - Base editing efficiency (i.e. proportion of all edited outcomes in editing window to all outcomes).
         - Base editing outcome proportion(**pred_prop**) shows the predicted proportion of edited substrate(i.e. proportion of edited sixth base to all edited outcomes in editing window).

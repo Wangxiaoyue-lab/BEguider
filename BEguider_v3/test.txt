@@ -1,3 +1,0 @@
-Chrom,Coordinate,Type
-chr1,145645,r
-chrX,18701,a
