@@ -100,7 +100,7 @@ class Parse:
 
 
 option = st.radio(
-    "Please choose input types. Uploaded file must have a header like examples",
+    "Please choose the input types. The uploaded file must have a header like the examples provided.",
     ("genes", "chromosomes", "rsIDs"),
 )
 col01, col02 = st.columns(2)
@@ -262,8 +262,10 @@ if submit_button:
 st.markdown(
     """
 - Some concepts:
-    - Base editing **efficiency** (i.e. proportion of all edited outcomes in editing window to all outcomes).
-    - Base editing outcome **proportion** shows the predicted proportion of edited substrate(i.e. proportion of edited substrate base to all edited outcomes in editing window).
-    - Absolute **frequency** shows the absolute predicted frequency of edited substrate(i.e. proportion of edited substrate base to all outcomes).
+    - Base editing **efficiency** refers to the proportion of all edited outcomes in the editing window to all outcomes.
+    - Base editing outcome **proportion** refers to the predicted proportion of the edited substrate 
+    (i.e., the proportion of the edited substrate base to all edited outcomes in the editing window).
+    - Absolute **frequency** shows the absolute predicted frequency of the edited substrate 
+    (i.e., the proportion of the edited substrate base to all outcomes).
 """
 )

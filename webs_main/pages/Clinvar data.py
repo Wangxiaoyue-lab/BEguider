@@ -8,7 +8,7 @@ st.sidebar.header("Clinvar data")
 # Add prompt
 st.markdown(
     """
-    ##### _Note: All sites were set at the sixth position of the sgrna._
+    ##### _Note: All sites are set at the sixth position of the sgRNA._
     - **'REF'** means that you could try to **repair the pathogenic site.**
     - **'ALT'** means that you could try to **generate the disease model.**
     """
@@ -54,7 +54,7 @@ st.download_button(
     mime="text/csv",
 )
 st.markdown(
-    "#####  \* Download all the data for more **sequence information**, including 20nt-sgRNAs and 4nt-PAMs."
+    "#####  \* You can download all the data for more **sequence information**, including 20nt-sgRNAs and 4nt-PAMs."
 )
 df = df.drop(
     [
@@ -134,14 +134,16 @@ if cols[0].button("Update"):
             mime="text/csv",
         )
 
+
 st.markdown(
     """
-    #####  \* Click the **Update** button to check the results based on the base editors and your proposes. Sites that performed best on each prediction were highlighted.
+    #####  \* Click the **Update** button to check the results based on the base editors and your proposals. The sites that performed best on each prediction are highlighted.
     - Some concepts:
-        - Base editing efficiency (i.e. proportion of all edited outcomes in editing window to all outcomes).
-        - Base editing outcome proportion(**pred_prop**) shows the predicted proportion of edited substrate(i.e. proportion of edited sixth base to all edited outcomes in editing window).
-        - Absolute frequency(**pred_freq**) shows the absolute predicted frequency of edited substrate(i.e. proportion of edited sixth base to all outcomes).
-        - The threshold of Editable sites were defined as **outcome proportion >= 90% & efficiency>=5%**.
-        
+        - Base editing **efficiency** refers to the proportion of all edited outcomes in the editing window to all outcomes.
+        - Base editing outcome **proportion** (pred_prop) refers to the predicted proportion of the edited substrate 
+        (i.e., the proportion of the edited sixth base to all edited outcomes in the editing window).
+        - Absolute **frequency** (pred_freq) shows the absolute predicted frequency of the edited substrate 
+        (i.e., the proportion of the edited sixth base to all outcomes).
+        - The threshold for editable sites is defined as **outcome proportion >= 90% & efficiency>=5%**.
     """
 )

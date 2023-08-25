@@ -24,24 +24,24 @@ st.sidebar.header("Intro")
 st.write("# Welcome to BEguider!")
 st.markdown(
     """
-    **BEguider is a deep-learning model, could design sgRNA for multiple gene loci in batches to predict the efficiency 
-    and products of each sgRNA.**
+    **BEguider is a deep-learning model that can design sgRNA for multiple gene 
+    loci in batches to predict the efficiency and products of each sgRNA.**
 
     ## BEguider
-    - Base editors with Strict Limits of NGG PAM: `ABE7.10-NGG`, `BE4-NGG`
+    - Base editors with strict limits of NGG PAM: `ABE7.10-NGG`, `BE4-NGG`
     - PAM-less base editors: `ABEmax-SpRY`, `ABE8e-P(AP)3-SpRY`, `ABE8e-NL-SpRY`,`BE4max-SpRY`, `FNLS-YE1-BE4max-SpRY`, `YE1-BE4max-SpRY`
-    - The pairs of Base Editors and SNVs: 
+    - The pairs of base editors and SNVs: 
         - For **ABE**: _pos_  :orange[A] > :green[G] ,  _neg_  :blue[T] > :red[C] 
         - For **CBE**: _pos_  :red[C] > :blue[T] ,  _neg_  :green[G] > :orange[A]       
         
-    - Jump to our [code repository](https://github.com/Wangxiaoyue-lab/BEguider) if you want to run model locally or get help!
+    - Jump to our [code repository](https://github.com/Wangxiaoyue-lab/BEguider) if you want to run the model locally or get help!
 
     ## Clinvar data
-    - Data from clinvar were predicted by PAM-less base editor for reference. (Clinvar edition:2021/03/02)
-    - Choose more sites from [clinvar database](https://www.ncbi.nlm.nih.gov/clinvar/)
+    - Data from Clinvar were predicted by PAM-less base editor for reference (Clinvar edition: 2021/03/02).
+    - Choose more sites from the [clinvar database](https://www.ncbi.nlm.nih.gov/clinvar/)
     
     ## About
-    - Thanks for your using.
+    - Thank you for using our model.
     - Please cite our paper if you find our model useful.
         - To be published.
 """
@@ -85,8 +85,8 @@ def monitor_and_cleanup_folder(path, max_folders, num_folders_to_delete, max_siz
 max_folders = 2000
 num_folders_to_delete = 500
 max_size = 5  # G
-# Monitor specified folder
 
+# Monitor specified folder
 
 path = script_dir + "/temp_dirs"
 monitor_and_cleanup_folder(path, max_folders, num_folders_to_delete, max_size)
