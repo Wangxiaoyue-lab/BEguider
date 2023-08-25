@@ -21,13 +21,14 @@ COPY environment.yml .
 RUN conda env create -f environment.yml
 
 # env
-ENV CONDA_DEFAULT_ENV=tf1
+ENV CONDA_DEFAULT_ENV=beguider
 ENV CONDA_PREFIX=/opt/conda/envs/$CONDA_DEFAULT_ENV
 ENV PATH=$CONDA_PREFIX/bin:$PATH
 
 #  requirements.txt 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
 # port
 EXPOSE 8501
 
