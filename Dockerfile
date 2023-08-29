@@ -41,6 +41,5 @@ WORKDIR /app
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-
 # RUN
 CMD ["sh", "-c", "cd /app/webs_main && streamlit run Intro.py --server.port=8501 --server.address=0.0.0.0"]

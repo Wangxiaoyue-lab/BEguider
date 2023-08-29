@@ -159,7 +159,7 @@ def main_pre(BaseEditor, parse=None):
             offpath, mode="a", sep=" ", index=False, header=False
         )
 
-        offoutpath = offtarget(fname, tempdir)
+        offoutpath = get_offtarget(fname, tempdir)
         # offinfo = pd.read_csv(offoutpath, header=None, sep='\t')
         # offinfo = offinfo.rename(columns={0:'ref-seq',1:'chrom',2:'coordinate',3:'offtarget-seq',4:'strand',5:'mismatch-num'})
     else:
