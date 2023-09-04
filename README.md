@@ -87,7 +87,7 @@ cd BEguider_V3
 python BEguider.py [options]
 ```
 
-## Usage
+## Usage of  the command line tool
 
 The options are as follows:
 
@@ -98,8 +98,7 @@ The options are as follows:
   
 - _If you have installed [casoffinder](<http://www.rgenome.net/cas-offinder/>), the following two options are available._
   - `-f` or `--offtarget` : True / False. True: predict off-target sites in hg38 genome. (Default = False)
-
-  - `-m` or `--mismatch` : Allowed maximum mismatch site between sgRNA and genome while searching for off-target sites.(Default = 3)
+  - `-m` or `--mismatch` : Allowed maximum mismatch site between sgRNA and genome while searching for off-target sites. (Default = 3)
 - `-o` or `--output` : Output directory. (Default = current directory)
 
 ## Examples

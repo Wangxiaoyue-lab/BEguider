@@ -44,7 +44,9 @@ def convert_df(df):
 
 df = load_data(filepath)
 col_names = df.columns[-9:]
-result = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
+num_col = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
+edit_col = col_names[[3, 5, 8]]
+
 df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
 
 st.download_button(
@@ -76,11 +78,6 @@ st.markdown(
 )
 
 
-def highlight_greater_than_threshold(val, threshold):
-    color = "yellow" if val > threshold else ""
-    return f"background-color: {color}"
-
-
 (
     col_0,
     col_1,
@@ -97,6 +94,11 @@ for value in df["caused_disease"].unique():
     options.update(value.split("|"))
 disease = col_2.multiselect("Disease", options)
 editable = col_3.multiselect("Editable", ["Y", "N"])
+
+def highlight_Y(s):
+    return ['background-color: green' if v == 'Y' else '' for v in s]
+def format_number(val):
+    return f"{val:.4f}"
 
 
 cols = st.columns(10)
@@ -126,7 +128,7 @@ if cols[0].button("Update"):
     if filtered_df.empty:
         st.write("Sorry, no data were found.")
     else:
-        st.dataframe(filtered_df.style.highlight_max(subset=result, axis=0))
+        st.dataframe(filtered_df.style.apply(highlight_Y, subset=edit_col).format({col: format_number for col in num_col}))
         cols[1].download_button(
             label="Download",
             data=convert_df(filtered_df),
@@ -137,7 +139,7 @@ if cols[0].button("Update"):
 
 st.markdown(
     """
-    #####  \* Click the **Update** button to check the results based on the base editors and your proposals. The sites that performed best on each prediction are highlighted.
+    #####  \* Click the **Update** button to check the results based on the base editors and your proposals. Sites that were defined as editable are highlighted.
     - Some concepts:
         - Base editing **efficiency** refers to the proportion of all edited outcomes in the editing window to all outcomes.
         - Base editing outcome **proportion** (pred_prop) refers to the predicted proportion of the edited substrate 

@@ -229,6 +229,9 @@ if submit_button:
     try:
         with st.spinner("Running..."):
             alleff, allprop = bw.main_pre(be, parse=parse)
+            all_files= pd.merge(alleff,allprop, how="inner",on=["Base-Editor","SNP-Site","Strand","Designed-sgRNA","PAM"])
+            all_files=all_files[all_files["Pred-Efficiency"]!=0]
+            all_files['Pred-Frequency']=all_files["Pred-Efficiency"] * all_files["Pred-Proportion"]
     except SystemExit as e:
         st.error("Sorry, no suitable Base Editors.")
     except Exception as e:
@@ -243,21 +246,22 @@ if submit_button:
 
     else:
         st.success("SUCCESS!")
+        
         col11, col12, _, _, _ = st.columns(5)
 
         col11.download_button(
-            label="Download **effciency** files",
-            data=convert_df(alleff),
-            file_name="effciency.csv",
+            label="Download results",
+            data=convert_df(all_files),
+            file_name="Frequency.csv",
             mime="text/csv",
         )
 
-        col12.download_button(
-            label="Download **proption** files",
-            data=convert_df(allprop),
-            file_name="proption.csv",
-            mime="text/csv",
-        )
+        # col12.download_button(
+        #     label="Download **proption** files",
+        #     data=convert_df(allprop),
+        #     file_name="proption.csv",
+        #     mime="text/csv",
+        # )
 
 st.markdown(
     """

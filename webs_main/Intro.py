@@ -25,7 +25,7 @@ st.write("# Welcome to BEguider!")
 st.markdown(
     """
     **BEguider is a deep-learning model that can design sgRNA for multiple gene 
-    loci in batches to predict the efficiency and products of each sgRNA.**
+    loci in batches to predict the efficiency and products of different base editors.**
 
     ## BEguider
     - Base editors with strict limits of NGG PAM: `ABE7.10-NGG`, `BE4-NGG`
