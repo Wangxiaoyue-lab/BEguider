@@ -29,19 +29,20 @@ st.markdown(
 
     ## BEguider
     - Base editors with strict limits of NGG PAM: `ABE7.10-NGG`, `BE4-NGG`
-    - PAM-less base editors: `ABEmax-SpRY`, `ABE8e-P(AP)3-SpRY`, `ABE8e-NL-SpRY`,`BE4max-SpRY`, `FNLS-YE1-BE4max-SpRY`, `YE1-BE4max-SpRY`
+    - PAM-less base editors: `ABEmax-SpRY`, `ABE8e-SL-SpRY`, `ABE8e-NL-SpRY`,`BE4max-SpRY`, `FNLS-YE1-SpRY`, `YE1-SpRY`
     - The pairs of base editors and SNVs: 
         - For **ABE**: _pos_  :orange[A] > :green[G] ,  _neg_  :blue[T] > :red[C] 
         - For **CBE**: _pos_  :red[C] > :blue[T] ,  _neg_  :green[G] > :orange[A]       
-        
-    - Jump to our [code repository](https://github.com/Wangxiaoyue-lab/BEguider) if you want to run the model locally or get help!
+    - In addition to directly entering sequence information, [hg38 chromosome loci](http://genome.ucsc.edu/) or [rsID](https://www.ncbi.nlm.nih.gov/snp/) could also be supported.
+    
 
-    ## Clinvar data
-    - Data from Clinvar were predicted by PAM-less base editor for reference (Clinvar edition: 2021/03/02).
-    - Choose more sites from the [clinvar database](https://www.ncbi.nlm.nih.gov/clinvar/)
+    ## ClinVar data
+    - Data from [ClinVar](https://www.ncbi.nlm.nih.gov/clinvar/) had already been predicted by PAM-less base editor for reference (ClinVar edition: 2021/03/02).
+    
     
     ## About
     - Thank you for using our model.
+    - Jump to our [code repository](https://github.com/Wangxiaoyue-lab/BEguider) if you want to run the model locally or get help!
     - Please cite our paper if you find our model useful.
         - To be published.
 """

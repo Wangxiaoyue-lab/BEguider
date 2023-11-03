@@ -141,11 +141,11 @@ uploaded_file = col02.file_uploader(
 with st.form(key="my_form"):
     BaseEditor = [
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
         "ABE7.10-NGG",
         "BE4-NGG",
         "ALL",

@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Clinvar data", layout="wide")
-st.markdown("## Clinvar data")
-st.sidebar.header("Clinvar data")
+st.set_page_config(page_title="ClinVar data", layout="wide")
+st.markdown("## ClinVar data")
+st.sidebar.header("ClinVar data")
 
 # Add prompt
 st.markdown(
@@ -20,7 +20,7 @@ col1, col2 = st.columns(2)
 
 # Place select boxes in columns
 type1 = col1.selectbox("Base editors", ["ABE", "CBE"])
-type2 = col2.selectbox("Proposes", ["REF", "ALT"])
+type2 = col2.selectbox("Allele alteration", ["REF", "ALT"])
 
 
 # Add explanatory text
@@ -47,7 +47,7 @@ col_names = df.columns[-9:]
 num_col = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
 edit_col = col_names[[3, 5, 8]]
 
-df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
+#df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
 
 st.download_button(
     label="Download all the data for local query",
@@ -55,9 +55,7 @@ st.download_button(
     file_name=filename,
     mime="text/csv",
 )
-st.markdown(
-    "#####  \* You can download all the data for more **sequence information**, including 20nt-sgRNAs and 4nt-PAMs."
-)
+
 df = df.drop(
     [
         "index",
@@ -65,8 +63,6 @@ df = df.drop(
         "base",
         "ref_position",
         "significance",
-        "20nt_sgRNA",
-        "4nt_PAM",
     ],
     axis=1,
 )
@@ -101,7 +97,7 @@ def format_number(val):
     return f"{val:.4f}"
 
 
-cols = st.columns(10)
+cols = st.columns(8)
 # Filter data frame based on selected values
 if cols[0].button("Update"):
     # Create a mask to filter rows in the data frame
@@ -139,13 +135,14 @@ if cols[0].button("Update"):
 
 st.markdown(
     """
-    #####  \* Click the **Update** button to check the results based on the base editors and your proposals. Sites that were defined as editable are highlighted.
+    #####  \* Click the **Update** button to check the results based on the base editors and your proposals. 
+    Sites that were defined as editable are highlighted.
     - Some concepts:
         - Base editing **efficiency** refers to the proportion of all edited outcomes in the editing window to all outcomes.
         - Base editing outcome **proportion** (pred_prop) refers to the predicted proportion of the edited substrate 
         (i.e., the proportion of the edited sixth base to all edited outcomes in the editing window).
         - Absolute **frequency** (pred_freq) shows the absolute predicted frequency of the edited substrate 
         (i.e., the proportion of the edited sixth base to all outcomes).
-        - The threshold for editable sites is defined as **outcome proportion >= 90% & efficiency>=5%**.
+        - The threshold for editable sites is defined as **outcome proportion >= 90% & efficiency >= 5%**.
     """
 )

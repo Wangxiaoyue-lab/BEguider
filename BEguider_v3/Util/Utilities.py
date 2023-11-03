@@ -26,7 +26,7 @@ def GetParams(dataset):
     elif dataset == "ABEmax-SpRY":
         effpath = "../saved_model/efficiency/ABEmax_BestENS.h5"
         proppath = "../saved_model/proportion/ABEmax_BestENS.h5"
-    elif dataset == "ABE8e-P(AP)3-SpRY":
+    elif dataset == "ABE8e-SL-SpRY":
         effpath = "../saved_model/efficiency/ABE8e-7_BestENS.h5"
         proppath = "../saved_model/proportion/ABE8e-7_BestENS.h5"
     elif dataset == "ABE8e-NL-SpRY":
@@ -35,10 +35,10 @@ def GetParams(dataset):
     elif dataset == "BE4max-SpRY":
         effpath = "../saved_model/efficiency/CBE4max_BestENS.h5"
         proppath = "../saved_model/proportion/CBE4max_BestENS.h5"
-    elif dataset == "FNLS-YE1-BE4max-SpRY":
+    elif dataset == "FNLS-YE1-SpRY":
         effpath = "../saved_model/efficiency/CBE-FNLS_BestENS.h5"
         proppath = "../saved_model/proportion/CBE-FNLS_BestENS.h5"
-    elif dataset == "YE1-BE4max-SpRY":
+    elif dataset == "YE1-SpRY":
         effpath = "../saved_model/efficiency/CBE-YE1_BestENS.h5"
         proppath = "../saved_model/proportion/CBE-YE1_BestENS.h5"
     else:

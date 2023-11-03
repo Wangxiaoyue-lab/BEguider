@@ -37,11 +37,11 @@ def get_predict_data(variant, pam, inp):
 def get_PAM(BaseEditor):
     nnnnbe = [
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
     ]
     nggbe = ["ABE7.10-NGG", "BE4-NGG"]
     if BaseEditor == "ALL":
@@ -74,16 +74,16 @@ def main_pre(BaseEditor, parse=None):
     # print('pam:',pam)
     allbe = [
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
         "ABE7.10-NGG",
         "BE4-NGG",
     ]
-    abes = ["ABEmax-SpRY", "ABE8e-P(AP)3-SpRY", "ABE8e-NL-SpRY", "ABE7.10-NGG"]
-    cbes = ["BE4max-SpRY", "FNLS-YE1-BE4max-SpRY", "YE1-BE4max-SpRY", "BE4-NGG"]
+    abes = ["ABEmax-SpRY", "ABE8e-SL-SpRY", "ABE8e-NL-SpRY", "ABE7.10-NGG"]
+    cbes = ["BE4max-SpRY", "FNLS-YE1-SpRY", "YE1-SpRY", "BE4-NGG"]
 
     # inp[0], tags[0] -- ABE
     # inp[1], tags[1] -- CBE

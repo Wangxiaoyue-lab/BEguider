@@ -5,7 +5,7 @@
 **BEguider is a deep-learning model, could design sgRNA for multiple gene loci in batches to predict the efficiency and products of each sgRNA.**
 
 - Base editors with Strict Limits of NGG PAM: `ABE7.10-NGG`, `BE4-NGG`
-- PAM-less base editors: `ABEmax-SpRY`, `ABE8e-P(AP)3-SpRY`, `ABE8e-NL-SpRY`,`BE4max-SpRY`, `FNLS-YE1-BE4max-SpRY`, `YE1-BE4max-SpRY`
+- PAM-less base editors: `ABEmax-SpRY`, `ABE8e-SL-SpRY`, `ABE8e-NL-SpRY`,`BE4max-SpRY`, `FNLS-YE1-SpRY`, `YE1-SpRY`
 - The pairs of Base Editors and SNVs:
   - For **ABE**: _pos_  A > G ,  _neg_  T > C
   - For **CBE**: _pos_  C > T ,  _neg_  G > A

@@ -23,12 +23,12 @@ def get_parser():
     Author : Jingjing Gao
     Email  : <gaojingjing@ibms.pumc.edu.cn>
 
-    Optional Base Editors: ['ABEmax-SpRY', 'ABE8e-P(AP)3-SpRY', 'ABE8e-NL-SpRY', 'BE4max-SpRY', 
-                            'FNLS-YE1-BE4max-SpRY', 'YE1-BE4max-SpRY', 'ABE7.10-NGG', 'BE4-NGG']
+    Optional Base Editors: ['ABEmax-SpRY', 'ABE8e-SL-SpRY', 'ABE8e-NL-SpRY', 'BE4max-SpRY', 
+                            'FNLS-YE1-SpRY', 'YE1-SpRY', 'ABE7.10-NGG', 'BE4-NGG']
     
     Base Editors with Strict Limits of NGG PAM: ['ABE7.10-NGG', 'BE4-NGG']
-    PAM-less Base Editors: ['ABEmax-SpRY', 'ABE8e-P(AP)3-SpRY', 'ABE8e-NL-SpRY', 
-                            'BE4max-SpRY', 'FNLS-YE1-BE4max-SpRY', 'YE1-BE4max-SpRY'] 
+    PAM-less Base Editors: ['ABEmax-SpRY', 'ABE8e-SL-SpRY', 'ABE8e-NL-SpRY', 
+                            'BE4max-SpRY', 'FNLS-YE1-SpRY', 'YE1-SpRY'] 
 
     The pairings of Base Editors and SNPs:
     CBE -- C>T ; G>A       ABE -- A>G ; T>C
@@ -128,11 +128,11 @@ def get_predict_data(variant, pam, inp):
 def get_PAM(BaseEditor):
     nnnnbe = [
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
     ]
     nggbe = ["ABE7.10-NGG", "BE4-NGG"]
     if BaseEditor == "ALL":
@@ -165,16 +165,16 @@ def main(BaseEditor, parse=None):
     # print('pam:',pam)
     allbe = [
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
         "ABE7.10-NGG",
         "BE4-NGG",
     ]
-    abes = ["ABEmax-SpRY", "ABE8e-P(AP)3-SpRY", "ABE8e-NL-SpRY", "ABE7.10-NGG"]
-    cbes = ["BE4max-SpRY", "FNLS-YE1-BE4max-SpRY", "YE1-BE4max-SpRY", "BE4-NGG"]
+    abes = ["ABEmax-SpRY", "ABE8e-SL-SpRY", "ABE8e-NL-SpRY", "ABE7.10-NGG"]
+    cbes = ["BE4max-SpRY", "FNLS-YE1-SpRY", "YE1-SpRY", "BE4-NGG"]
 
     # inp[0], tags[0] -- ABE
     # inp[1], tags[1] -- CBE
@@ -271,11 +271,11 @@ if __name__ == "__main__":
     assert BaseEditor in [
         "ALL",
         "ABEmax-SpRY",
-        "ABE8e-P(AP)3-SpRY",
+        "ABE8e-SL-SpRY",
         "ABE8e-NL-SpRY",
         "BE4max-SpRY",
-        "FNLS-YE1-BE4max-SpRY",
-        "YE1-BE4max-SpRY",
+        "FNLS-YE1-SpRY",
+        "YE1-SpRY",
         "ABE7.10-NGG",
         "BE4-NGG",
     ]
