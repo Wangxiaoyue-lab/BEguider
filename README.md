@@ -19,7 +19,7 @@ We offer a variety of ways to use it:
 - A local Web tool / command line tool
   - Customizable
 
-Data from clinvar were predicted by PAM-less base editor for reference, please download `datas/*.csv`.
+Data from ClinVar were predicted by PAM-less base editor for reference, please download `datas/*.csv`.
 
 ## Installation
 
