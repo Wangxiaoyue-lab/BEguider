@@ -27,7 +27,7 @@ type2 = col2.selectbox("Allele alteration", ["REF", "ALT"])
 
 # Determine the file name to read based on the selected type
 filename = f"{type1[0].lower()}_{type2.lower()}_anno.csv"
-filepath = f"../datas/{filename}"
+filepath = f"../data/{filename}"
 
 
 # csv
@@ -47,7 +47,7 @@ col_names = df.columns[-9:]
 num_col = [x for i, x in enumerate(col_names, 1) if i not in [3, 6, 9]]
 edit_col = col_names[[3, 5, 8]]
 
-#df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
+# df = df[list(df.columns[-9:]) + list(df.columns[:-9])]  # exchange the order
 
 st.download_button(
     label="Download all the data for local query",
@@ -91,8 +91,11 @@ for value in df["caused_disease"].unique():
 disease = col_2.multiselect("Disease", options)
 editable = col_3.multiselect("Editable", ["Y", "N"])
 
+
 def highlight_Y(s):
-    return ['background-color: green' if v == 'Y' else '' for v in s]
+    return ["background-color: green" if v == "Y" else "" for v in s]
+
+
 def format_number(val):
     return f"{val:.4f}"
 
@@ -124,7 +127,11 @@ if cols[0].button("Update"):
     if filtered_df.empty:
         st.write("Sorry, no data were found.")
     else:
-        st.dataframe(filtered_df.style.apply(highlight_Y, subset=edit_col).format({col: format_number for col in num_col}))
+        st.dataframe(
+            filtered_df.style.apply(highlight_Y, subset=edit_col).format(
+                {col: format_number for col in num_col}
+            )
+        )
         cols[1].download_button(
             label="Download",
             data=convert_df(filtered_df),
