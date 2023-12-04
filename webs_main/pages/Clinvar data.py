@@ -100,7 +100,7 @@ def format_number(val):
     return f"{val:.4f}"
 
 
-cols = st.columns(8)
+cols = st.columns(4)
 # Filter data frame based on selected values
 if cols[0].button("Update"):
     # Create a mask to filter rows in the data frame
