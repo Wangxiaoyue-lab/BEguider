@@ -61,8 +61,9 @@ def choose_variants(belist, pam, inp):
     for variant in belist:  # for each be
         # print('variant:',variant)
         tempeff, tempprop = get_predict_data(variant, pam, inp)
-        alleff = pd.concat([alleff, tempeff])
-        allprop = pd.concat([allprop, tempprop])
+        alleff = pd.concat([alleff, tempeff], ignore_index=True)
+        allprop = pd.concat([allprop, tempprop], ignore_index=True)
+
     return alleff, allprop
 
 
@@ -144,7 +145,9 @@ def main_pre(BaseEditor, parse=None):
         sys.exit()
     alleff = alleff.drop_duplicates()
     # alleff.to_csv(outfile[0], header=True, index=False)
-    allprop = allprop.drop_duplicates(subset=["SNP-Site", "Predicted-Editing-Outcomes"])
+    allprop = allprop.drop_duplicates(
+        subset=["Base-Editor", "SNP-Site", "Predicted-Editing-Outcomes"]
+    )
     # allprop.to_csv(outfile[1], header=True, index=False)
 
     tag = False

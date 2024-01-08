@@ -231,7 +231,9 @@ def main(BaseEditor, parse=None):
         sys.exit()
     alleff = alleff.drop_duplicates()
     alleff.to_csv(outfile[0], header=True, index=False)
-    allprop = allprop.drop_duplicates(subset=["SNP-Site", "Predicted-Editing-Outcomes"])
+    allprop = allprop.drop_duplicates(
+        subset=["Base-Editor", "SNP-Site", "Predicted-Editing-Outcomes"]
+    )
     allprop.to_csv(outfile[1], header=True, index=False)
 
     tag = False
