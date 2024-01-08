@@ -17,7 +17,7 @@ st.sidebar.header("BEguider")
 import sys
 
 sys.path.insert(0, "../BEguider_v3")
-import BEguider_web as bw
+from BEguider_web import *
 
 st.markdown("\n**Examples:**\n")
 
@@ -228,10 +228,19 @@ if submit_button:
 
     try:
         with st.spinner("Running..."):
-            alleff, allprop = bw.main_pre(be, parse=parse)
-            all_files= pd.merge(alleff,allprop, how="inner",on=["Base-Editor","SNP-Site","Strand","Designed-sgRNA","PAM"])
-            all_files=all_files[all_files["Pred-Efficiency"]!=0]
-            all_files['Pred-Frequency']=all_files["Pred-Efficiency"] * all_files["Pred-Proportion"]
+            alleff, allprop = main_pre(be, parse=parse)
+            if alleff.empty:
+                raise ValueError("Sorry, no editing results.")
+            all_files = pd.merge(
+                alleff,
+                allprop,
+                how="inner",
+                on=["Base-Editor", "SNP-Site", "Strand", "Designed-sgRNA", "PAM"],
+            )
+            all_files = all_files[all_files["Pred-Efficiency"] != 0]
+            all_files["Pred-Frequency"] = (
+                all_files["Pred-Efficiency"] * all_files["Pred-Proportion"]
+            )
     except SystemExit as e:
         st.error("Sorry, no suitable Base Editors.")
     except Exception as e:
@@ -239,6 +248,7 @@ if submit_button:
             "local variable 'new_seq' referenced before assignment",
             "4",
             "R",
+            "local variable 'pam' referenced before assignment",
         ):
             st.error("Please check your input format!", icon="🚨")
         else:
@@ -246,8 +256,13 @@ if submit_button:
 
     else:
         st.success("SUCCESS!")
-        
-        col11, col12, _, _, _ = st.columns(5)
+
+        (
+            col11,
+            col12,
+            _,
+            _,
+        ) = st.columns(4)
 
         col11.download_button(
             label="Download results",

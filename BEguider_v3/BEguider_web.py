@@ -50,13 +50,15 @@ def get_PAM(BaseEditor):
         pam = "NGG"
     elif BaseEditor in nnnnbe:
         pam = "NNN"
+    else:
+        os.error("bug here")
     return pam
 
 
 def choose_variants(belist, pam, inp):
     alleff = pd.DataFrame()
     allprop = pd.DataFrame()
-    for variant in belist:
+    for variant in belist:  # for each be
         # print('variant:',variant)
         tempeff, tempprop = get_predict_data(variant, pam, inp)
         alleff = pd.concat([alleff, tempeff])
@@ -68,9 +70,9 @@ def main_pre(BaseEditor, parse=None):
     genes = parse.genes
     chrom = parse.chromosome
     rs = parse.rsID
-    pam = get_PAM(BaseEditor)
+    pam = get_PAM(BaseEditor)  # 1 get pam
     # print('PAM:', pam)
-    print("genes:", genes, " chrom:", chrom, " rs:", rs)
+    # print("genes:", genes, " chrom:", chrom, " rs:", rs)
     # print('pam:',pam)
     allbe = [
         "ABEmax-SpRY",
@@ -91,6 +93,8 @@ def main_pre(BaseEditor, parse=None):
         inp = [genes, genes]
         outfile, tempdir, offpath, fname = process_dir(BaseEditor, genes, parse.output)
         tags = [2, 2]
+        # tag：gene model [2,2]
+        # inp：[genes, genes]
 
     elif chrom:
         outfile, tempdir, offpath, fname = process_dir(BaseEditor, chrom, parse.output)
@@ -102,11 +106,11 @@ def main_pre(BaseEditor, parse=None):
 
     # print('BaseEditor:',BaseEditor,' tag:',tags)
     if BaseEditor == "ALL":
-        if tags[0] == 2:
+        if tags[0] == 2:  # gene model + all
             # print('all tagABE, tagCBE')
             alleff, allprop = choose_variants(allbe, pam, inp[0])
 
-        elif tags[0] == 1 and tags[1] == 1:
+        elif tags[0] == 1 and tags[1] == 1:  #
             # print('1 tagABE, tagCBE')
             abe_eff, abe_prop = choose_variants(abes, pam, inp[0])
             cbe_eff, cbe_prop = choose_variants(cbes, pam, inp[1])
@@ -122,7 +126,7 @@ def main_pre(BaseEditor, parse=None):
             # print('tags[0]==1 and tags[1]==0')
             alleff, allprop = choose_variants(abes, pam, inp[0])
     elif BaseEditor != "ALL":
-        if tags[0] == 2:
+        if tags[0] == 2:  # gene model + that BaseEditor
             alleff, allprop = get_predict_data(BaseEditor, pam, inp[0])
         elif tags[0] != 2:
             if (BaseEditor in abes and tags[0] == 0) or (

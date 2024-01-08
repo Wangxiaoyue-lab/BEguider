@@ -455,7 +455,7 @@ def getfile_inference(variant, inpath, substrate, pam):
                 geneid[name + "||" + str(index)] = [seqs + rev_seqs, len(seqs)]
         # print('geneid:\n', geneid)
         if len(geneid) == 0:
-            print("There is no NGG PAM in these genomic sequences.")
+            os.error("This kind of editing is a failure.")
 
         return geneid
 

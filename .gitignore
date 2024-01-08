@@ -3,3 +3,4 @@ BEguider_v3/saved_model/*
 *.tar
 webs_main/temp_dirs/*
 .docker*
+*.ipynb
