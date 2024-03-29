@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/681554213.svg)](https://zenodo.org/doi/10.5281/zenodo.10893904)
+
 # BEguider
 
 **Welcome to the BEguider!**
