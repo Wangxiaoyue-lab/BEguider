@@ -1,13 +1,4 @@
----
-title: BEguider
-emoji: 🎨  
-colorFrom: blue
-colorTo: green
-sdk: streamlit
-sdk_version: "1.25.0"
-app_file: webs_main/Intro.py
-pinned: false
----
+[![DOI](https://zenodo.org/badge/681554213.svg)](https://zenodo.org/doi/10.5281/zenodo.10893904)
 
 # BEguider
 
