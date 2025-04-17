@@ -1,3 +1,14 @@
+---
+title: BEguider
+emoji: 🎨  
+colorFrom: blue
+colorTo: green
+sdk: streamlit
+sdk_version: "1.25.0"
+app_file: webs_main/Intro.py
+pinned: false
+---
+
 # BEguider
 
 **Welcome to the BEguider!**

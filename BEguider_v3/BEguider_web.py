@@ -9,7 +9,7 @@ import sys
 import os
 
 
-sys.path.insert(0, "../BEguider_v3/Util")
+sys.path.insert(0, "/home/user/app/BEguider_v3/Util")
 from Utilities import *
 
 
@@ -105,7 +105,6 @@ def main_pre(BaseEditor, parse=None):
         outfile, tempdir, offpath, fname = process_dir(BaseEditor, rs, parse.output)
         inp, tags = get_snp_seq(pam, rs, tempdir)
 
-    # print('BaseEditor:',BaseEditor,' tag:',tags)
     if BaseEditor == "ALL":
         if tags[0] == 2:  # gene model + all
             # print('all tagABE, tagCBE')
@@ -123,6 +122,7 @@ def main_pre(BaseEditor, parse=None):
                 sys.exit()
         elif tags[0] == 0 and tags[1] == 1:
             alleff, allprop = choose_variants(cbes, pam, inp[1])
+            print("a")
         elif tags[0] == 1 and tags[1] == 0:
             # print('tags[0]==1 and tags[1]==0')
             alleff, allprop = choose_variants(abes, pam, inp[0])
@@ -135,9 +135,10 @@ def main_pre(BaseEditor, parse=None):
             ):
                 print("No suitable Base Editors.")
                 sys.exit()
-            elif BaseEditor in abes and tags[0] == 1:
+            elif BaseEditor in abes:  # and tags[0] == 1:
                 alleff, allprop = get_predict_data(BaseEditor, pam, inp[0])
-            elif BaseEditor in cbes and tags[0] == 1:
+
+            elif BaseEditor in cbes:  # and tags[0] == 1:
                 alleff, allprop = get_predict_data(BaseEditor, pam, inp[1])
     elif BaseEditor not in allbe:
         print("The base editor was wrong.")

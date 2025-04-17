@@ -91,3 +91,81 @@ max_size = 5  # G
 
 path = script_dir + "/temp_dirs"
 monitor_and_cleanup_folder(path, max_folders, num_folders_to_delete, max_size)
+
+
+####################################################################
+import sqlite3
+
+
+# Initialize the SQLite database connection
+conn = sqlite3.connect("view_count.db")
+c = conn.cursor()
+
+# Create a table to store the view count
+c.execute(
+    """
+    CREATE TABLE IF NOT EXISTS ViewCount (
+        id INTEGER PRIMARY KEY,
+        count INTEGER
+    )
+"""
+)
+
+# Initialize the count if it's the first run
+c.execute("SELECT count FROM ViewCount WHERE id=1")
+row = c.fetchone()
+if row is None:
+    c.execute("INSERT INTO ViewCount (id, count) VALUES (1, 0)")
+    conn.commit()
+
+
+# Function to update and retrieve the view count
+def update_view_count():
+    c.execute("UPDATE ViewCount SET count = count + 1 WHERE id=1")
+    conn.commit()
+    c.execute("SELECT count FROM ViewCount WHERE id=1")
+    return c.fetchone()[0]
+
+
+# Increment the view count and get the updated value
+view_count = update_view_count()
+
+
+# CSS animation for "+1" effect
+st.markdown(
+    """
+<style>
+@keyframes slideUp {
+  from {opacity: 1; transform: translateY(0);}
+  to {opacity: 0; transform: translateY(-20px);}
+}
+.count {
+  font-size: 16px;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+}
+.plus-one {
+  font-size: 14px;
+  color: #000000;
+  position: relative;
+  display: inline-block;
+  margin-left: 5px;
+  animation: slideUp 1s ease-out forwards;
+  pointer-events: none;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
+# Display the view count with "+1" animation
+st.markdown(
+    f"""
+<div class="count">
+  Page View Count: {view_count}
+  <span class="plus-one">+1</span>
+</div>
+""",
+    unsafe_allow_html=True,
+)

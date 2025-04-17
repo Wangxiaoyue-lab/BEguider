@@ -4,6 +4,9 @@ import pandas as pd
 import uuid
 import os
 
+script_dir = os.path.dirname(__file__)
+
+
 session_id = str(uuid.uuid4())
 session_dir = os.path.join("temp_dirs", session_id)
 if not os.path.exists(session_dir):
@@ -16,7 +19,7 @@ st.sidebar.header("BEguider")
 
 import sys
 
-sys.path.insert(0, "../BEguider_v3")
+sys.path.insert(0, "/home/user/app/BEguider_v3/")
 from BEguider_web import *
 
 st.markdown("\n**Examples:**\n")
@@ -30,15 +33,37 @@ def load_data(filepath, **kwargs):
     return df
 
 
+from io import StringIO
+
+
 @st.cache_data
-def convert_df(df):
-    return df.to_csv(index=False).encode("utf-8")
+def convert_df(df, add_comments=False):
+    if not add_comments:
+        return df.to_csv(index=False).encode("utf-8")
+    header_comment = """\
+# Base-Editor: The selected base editor
+# SNP-Site: A unique ID for the input sequence, which could be a gene, chromosomal location, or rsID
+# Strand: Indicates whether the sequence is on the forward (positive) or reverse (negative) strand
+# Designed-sgRNA: The sgRNA designed for the input site
+# PAM: The PAM sequence corresponding to the sgRNA
+# Pred-Efficiency: The predicted base editing efficiency, which refers to the proportion of all edited outcomes in the editing window to all outcomes
+# Predicted-Editing-Outcomes: The predicted editing outcomes after applying the sgRNA
+# Pred-Proportion: The predicted proportion of the edited substrate base to all edited outcomes in the editing window
+# Pred-Frequency: The absolute predicted frequency of the edited substrate base relative to all outcomes
+"""
+
+    csv_buffer = StringIO()
+    csv_buffer.write(header_comment)
+    csv_buffer.write("\n")
+    df.to_csv(csv_buffer, index=False)
+
+    return csv_buffer.getvalue().encode("utf-8")
 
 
 def ld_sp():
     st.download_button(
         label="Download sample .csv",
-        data=convert_df(load_data(f"../BEguider_v3/examples/{filename}")),
+        data=convert_df(load_data(f"{script_dir}/../../BEguider_v3/examples/{filename}")),
         file_name=filename,
         mime="text/csv",
     )
@@ -192,7 +217,6 @@ if submit_button:
 
     if option == "genes":
         if gn != "Genes,Seqs":
-            # 写入genes.csv
             file_path = os.path.join(session_dir, "genes.csv")
             with open(file_path, "w") as f:
                 f.write(gn)
@@ -200,7 +224,6 @@ if submit_button:
 
     elif option == "chromosomes":
         if cs != "Chrom,Coordinate,Type":
-            # 写入chromosomes.csv
             file_path = os.path.join(session_dir, "chromosomes.csv")
             with open(file_path, "w") as f:
                 f.write(cs)
@@ -208,7 +231,6 @@ if submit_button:
 
     elif option == "rsIDs":
         if ri != "SNP,Type":
-            # 写入rsIDs.csv
             file_path = os.path.join(session_dir, "rsIDs.csv")
             with open(file_path, "w") as f:
                 f.write(ri)
@@ -266,7 +288,7 @@ if submit_button:
 
         col11.download_button(
             label="Download results",
-            data=convert_df(all_files),
+            data=convert_df(all_files, add_comments=True),
             file_name="Frequency.csv",
             mime="text/csv",
         )

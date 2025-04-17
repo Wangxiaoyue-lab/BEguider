@@ -186,6 +186,7 @@ def main(BaseEditor, parse=None):
     elif chrom:
         outfile, tempdir, offpath, fname = process_dir(BaseEditor, chrom, parse.output)
         inp, tags = get_genomic_seq(pam, chrom, tempdir)
+        print(inp, tags)
 
     elif rs:
         outfile, tempdir, offpath, fname = process_dir(BaseEditor, rs, parse.output)
@@ -221,9 +222,9 @@ def main(BaseEditor, parse=None):
             ):
                 print("No suitable Base Editors.")
                 sys.exit()
-            elif BaseEditor in abes and tags[0] == 1:
+            elif BaseEditor in abes :#and tags[0] == 1:
                 alleff, allprop = get_predict_data(BaseEditor, pam, inp[0])
-            elif BaseEditor in cbes and tags[0] == 1:
+            elif BaseEditor in cbes:# and tags[0] == 1:
                 alleff, allprop = get_predict_data(BaseEditor, pam, inp[1])
     elif BaseEditor not in allbe:
         print("The base editor was wrong.")
